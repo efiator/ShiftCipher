@@ -7,7 +7,12 @@
 *The keys are generated based on the characters with the highest
 *frequencies in the encrypted text and matching these possibilities
 *with the characters that have the highest frequencies in the plain 
-*text alphabets. 
+*text alphabets.
+* 
+*Modifications:
+*Version: April 16, 2016
+*Modification: Modified to use the set of generated keys to decrypt
+*the encrypted text.
 */
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -18,13 +23,14 @@ public class Shift
 	{
 		String text="";
 		//Gets the encrypted text from the user and generates a set of possible keys.
-		String inputValue = JOptionPane.showInputDialog("Please input a string");
+		String inputValue = JOptionPane.showInputDialog("Please input the encrypted text");
 		inputValue=inputValue.toUpperCase();
-		//float [] frequency = {8.167f, 1.492f, 2.782f, 4.253f, 12.702f, 2.228f, 2.015f, 6.094f, 6.966f, 0.153f, 0.772f, 4.025f, 2.406f, 6.749f, 7.507f, 1.929f, 0.095f, 5.987f, 6.327f, 9.056f, 2.758f, 0.978f, 2.361f, 0.150f, 1.974f, 0.074f};
+		
 		int [] k=Shift.key(inputValue);
 		for(int i=0; i<k.length;i++)
 		{
-			Shift.decrypt(inputValue, k[i]);
+			text=Shift.decrypt(inputValue, k[i]);
+			System.out.println("Key: "+ k[i] +" Decrypted text: " +text);
 		}
 	}
 
@@ -115,6 +121,9 @@ public class Shift
 		return y;//returns the indices of the sorted frequencies
 	}
 
+	
+	/*This calculates the possible keys of the encrypted text
+	*/
 	public static int [] key(String txt)
 	{
 		String ptxt="";
@@ -145,31 +154,17 @@ public class Shift
 		return shiftKey;
 	}
 
-	public static char plain(char txt, int k)
+   /*This method uses decrypts and encrypted text using the numerical value
+   	* of the key that was used to decrypt it.
+	*/
+	public static String decrypt(String ctxt, int k)
 	{
-		int temp =(int)txt-65;
-		int p;
-		
-			p=((temp-k)%26)-65;
-			char t=(char)p;
-
-		return t;
-	}
-
-	public static void decrypt(String txt, int k)
-	{
-		//txt=txt.toUpperCase();
-
-		//String ptxt="";
-		char [] ctxt= txt.toCharArray();
-		for(int i=0; i<ctxt.length;i++)
+		String ptxt = "";
+		for(int i=0; i<ctxt.length(); i++)
 		{
-			if(ctxt[i]>='A' && ctxt[i]<='Z')
-			{
-				ctxt[i]=Shift.plain(ctxt[i],k);
-			}
-			System.out.println(ctxt[i]);
+			ptxt = ptxt+(char) (((ctxt.charAt(i)-k)%26)+65);
 		}
+		return ptxt;
 	}
-	
+
 }
