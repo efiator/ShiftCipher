@@ -159,10 +159,16 @@ public class Shift
 	*/
 	public static String decrypt(String ctxt, int k)
 	{
+		char c;
 		String ptxt = "";
 		for(int i=0; i<ctxt.length(); i++)
 		{
-			ptxt = ptxt+(char) (((ctxt.charAt(i)-k)%26)+65);
+			c=ctxt.charAt(i);
+				if(Character.isLetter(c))
+
+				{
+					ptxt = ptxt+(char) (((ctxt.charAt(i)-k)%26)+65);
+				}
 		}
 		return ptxt;
 	}
