@@ -13,6 +13,7 @@
 *Version: April 16, 2016
 *Modification: Modified to use the set of generated keys to decrypt
 *the encrypted text.
+*Version: April 28, 2016
 */
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -60,7 +61,7 @@ public class Shift
 		{
 			total+=numCount[i];
 		}
-		//calcualtes the frequency of each character
+		//calculates the frequency of each character
 		for(int i=0; i<numCount.length;i++)
 		{
 			numCount[i]=(numCount[i]/total)*100;
