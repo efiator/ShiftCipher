@@ -14,6 +14,7 @@
 *Modification: Modified to use the set of generated keys to decrypt
 *the encrypted text.
 *Version: April 28, 2016
+*Version: April 29, 2016
 */
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -162,15 +163,21 @@ public class Shift
 	{
 		char c;
 		String ptxt = "";
-		for(int i=0; i<ctxt.length(); i++)
+		String [] splitStr = ctxt.split(" "); //splits the decrypted text
+		for(int j=0; j<splitStr.length;j++)
 		{
-			c=ctxt.charAt(i);
+			String string = splitStr[j];
+			ptxt=ptxt+" ";  //properly spaces out the text
+			for(int i=0; i<string.length(); i++)
+			{
+				c=string.charAt(i);
 				if(Character.isLetter(c))
 
 				{
-					ptxt = ptxt+(char) (((ctxt.charAt(i)-k)%26)+65);
+					ptxt = ptxt+(char) (((string.charAt(i)-k)%26)+65);
 				}
-		}
+			}
+		}	
 		return ptxt;
 	}
 
