@@ -32,7 +32,7 @@ public class Shift
 		for(int i=0; i<k.length;i++)
 		{
 			text=Shift.decrypt(inputValue, k[i]);
-			System.out.println("Key: "+ k[i] +" Decrypted text: " +text);
+			System.out.println("A possible decrypted text is: " +text);
 		}
 	}
 
