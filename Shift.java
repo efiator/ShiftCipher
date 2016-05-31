@@ -159,6 +159,27 @@ public class Shift
    /*This method uses decrypts and encrypted text using the numerical value
    	* of the key that was used to decrypt it.
 	*/
+	  public static String encrypt(String ptxt, int k)
+    {
+        char c;
+        String ctxt = "";
+        String [] splitStr = ptxt.split(" "); //splits the decrypted text
+        for(int j=0; j<splitStr.length;j++)
+        {
+            String string = splitStr[j];
+            ctxt=ctxt+" ";  //properly spaces out the text
+            for(int i=0; i<string.length(); i++)
+            {
+                c=string.charAt(i);
+                if(Character.isLetter(c))
+
+                {
+                    ctxt = ctxt+(char) (((string.charAt(i)+k)%26)+65);
+                }
+            }
+        }
+        return ctxt;
+    }
 	public static String decrypt(String ctxt, int k)
 	{
 		char c;
