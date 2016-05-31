@@ -157,14 +157,14 @@ public class Shift
 		return shiftKey;
 	}
 
-   /*This method uses decrypts and encrypted text using the numerical value
-   	* of the key that was used to decrypt it.
-	*/
-	  public static String encrypt(String ptxt, int k)
+ /*
+ *This method encrypts plaintext using a key
+ */
+	public static String encrypt(String ptxt, int k)
     {
         char c;
         String ctxt = "";
-        String [] splitStr = ptxt.split(" "); //splits the decrypted text
+        String [] splitStr = ptxt.split(" "); //splits the plaintext text
         for(int j=0; j<splitStr.length;j++)
         {
             String string = splitStr[j];
@@ -181,11 +181,14 @@ public class Shift
         }
         return ctxt;
     }
+   /*This method uses decrypts and encrypted text using the numerical value
+   	* of the key that was used to decrypt it.
+	*/
 	public static String decrypt(String ctxt, int k)
 	{
 		char c;
 		String ptxt = "";
-		String [] splitStr = ctxt.split(" "); //splits the decrypted text
+		String [] splitStr = ctxt.split(" "); //splits the encrypted text
 		for(int j=0; j<splitStr.length;j++)
 		{
 			String string = splitStr[j];
